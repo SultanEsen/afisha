@@ -10,7 +10,7 @@ from .serializers import (
 )
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.pagination import PageNumberPagination
 
 
@@ -139,8 +139,14 @@ def movie_item_view(request, id):
         )
 
 
-class GenreListAPIView(ListAPIView):
+class GenreListAPIView(ListCreateAPIView):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
     # permission_classes = [IsAuthenticated]
     pagination_class = PageNumberPagination
+
+
+class GenreItemUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+    lookup_field = 'id'

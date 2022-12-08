@@ -29,5 +29,7 @@ urlpatterns = [
     path('api/v1/directors/movies/', views.directors_movies_view),
     path('api/v1/movies/<int:id>/', views.movie_item_view),
     path('api/v1/users/', include('users.urls')),
-    path('api/v1/genres/', views.GenreListAPIView.as_view())
+    path('api/v1/genres/', views.GenreListAPIView.as_view()),
+    path('api/v1/genres/<int:id>/', views.GenreItemUpdateDeleteAPIView.as_view()),
+
 ]
