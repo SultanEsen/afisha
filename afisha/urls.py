@@ -22,7 +22,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main_page),
     path('api/v1/static_data/', views.static_data_view),
-    path('api/v1/directors/', views.directors_view),
+    # path('api/v1/directors/', views.directors_view),
+    path('api/v1/directors/', views.DirectorModelViewSet.as_view({
+        'get': 'list',
+        'post': 'create'
+    })),
+    path('api/v1/directors/<int:id>/', views.DirectorModelViewSet.as_view({
+        'get': 'retrieve',
+        'put': 'update',
+        'delete': 'destroy'
+    })),
     path('api/v1/movies/', views.movies_view),
     path('api/v1/reviews/', views.reviews_view),
     path('api/v1/movies/reviews/', views.movies_reviews_view),

@@ -12,6 +12,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.viewsets import ModelViewSet
 
 
 @api_view(['GET'])
@@ -36,12 +37,20 @@ def main_page(request):
     return Response(data=dict_)
 
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def directors_view(request):
-    directors = Director.objects.all()
-    data = DirectorListSerializer(directors, many=True).data
-    return Response(data=data)
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# def directors_view(request):
+#     directors = Director.objects.all()
+#     data = DirectorListSerializer(directors, many=True).data
+#     return Response(data=data)
+
+
+### CBV
+class DirectorModelViewSet(ModelViewSet):
+    queryset = Director.objects.all()
+    serializer_class = DirectorListSerializer
+    pagination_class = PageNumberPagination
+    lookup_field = 'id'
 
 
 @api_view(['GET', 'POST'])
