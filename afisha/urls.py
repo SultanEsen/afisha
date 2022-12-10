@@ -18,6 +18,8 @@ from django.urls import path, include
 
 from movie_app import views
 from . import swagger
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -43,6 +45,6 @@ urlpatterns = [
     path('api/v1/genres/', views.GenreListAPIView.as_view()),
     path('api/v1/genres/<int:id>/', views.GenreItemUpdateDeleteAPIView.as_view()),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += swagger.urlpatterns
