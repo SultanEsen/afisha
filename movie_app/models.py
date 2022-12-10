@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Director(models.Model):
+    """Model for director"""
     name = models.CharField(max_length=255)
 
     def __str__(self):

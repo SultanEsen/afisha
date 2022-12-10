@@ -47,6 +47,7 @@ def main_page(request):
 
 ### CBV
 class DirectorModelViewSet(ModelViewSet):
+    """List and Create Director"""
     queryset = Director.objects.all()
     serializer_class = DirectorListSerializer
     pagination_class = PageNumberPagination

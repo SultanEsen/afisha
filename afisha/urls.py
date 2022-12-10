@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 from movie_app import views
+from . import swagger
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,3 +44,5 @@ urlpatterns = [
     path('api/v1/genres/<int:id>/', views.GenreItemUpdateDeleteAPIView.as_view()),
 
 ]
+
+urlpatterns += swagger.urlpatterns
